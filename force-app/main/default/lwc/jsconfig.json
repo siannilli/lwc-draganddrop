@@ -7,6 +7,9 @@
             ],
             "c/draggableList": [
                 "draggableList/draggableList.js"
+            ],
+            "c/sampleContainer": [
+                "sampleContainer/sampleContainer.js"
             ]
         },
         "experimentalDecorators": true

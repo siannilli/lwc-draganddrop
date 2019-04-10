@@ -2,14 +2,14 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
+            "c/containerSample": [
+                "containerSample/containerSample.js"
+            ],
             "c/draggableItem": [
                 "draggableItem/draggableItem.js"
             ],
             "c/draggableList": [
                 "draggableList/draggableList.js"
-            ],
-            "c/sampleContainer": [
-                "sampleContainer/sampleContainer.js"
             ]
         },
         "experimentalDecorators": true

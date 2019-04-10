@@ -14,7 +14,10 @@ export default class DraggableList extends LightningElement {
 	];
 
 	@api set items(value) {
-		this._items = value;
+		this._items = [];
+		value.forEach(element => {
+			this._items.push(element);
+		});
 	}
 
 	get items() {
@@ -47,7 +50,7 @@ export default class DraggableList extends LightningElement {
 		let idxSource = this.dragIndex;
 		let idxTarget = el.index;
 		console.log(' Index source: ' + idxSource + ' Index target: ' + idxTarget);
-		Promise.resolve().then(this.swapArray(idxSource, idxTarget));
+		this.swapArray(idxSource, idxTarget);
 		ev.dataTransfer.clearData('text/index');
 		this.dragIndex = -1;
 		el.parentElement.classList.remove('dragover');
@@ -61,8 +64,9 @@ export default class DraggableList extends LightningElement {
 		ev.dataTransfer.dropEffect = "move";
 	}
 
-	swapArray(idx1, idx2) {
-		[this.items[idx1], this.items[idx2]] = [this.items[idx2], this.items[idx1]];
+	swapArray(idx1, idx2) {		
+		[this._items[idx1], this._items[idx2]] = [this._items[idx2], this._items[idx1]];
+		this.dispatchEvent(new CustomEvent('listchanged', { detail: this._items}));
 	}
 
 	dragEnter(ev) {

@@ -1,0 +1,15 @@
+<template>
+
+	<lightning-accordion>
+		<lightning-accordion-section title="Draggable list">
+			<c-draggable-list items={items} onlistchanged={handleListChanged}></c-draggable-list>
+		</lightning-accordion-section>
+		<lightning-accordion-section title="Results">
+			<ul>
+				<template for:each={sortedList} for:item="item" for:index="idx">
+					<li key={item.name}>{item.name}</li>
+				</template>
+			</ul>
+		</lightning-accordion-section>
+	</lightning-accordion>
+</template>

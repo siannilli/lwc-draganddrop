@@ -28,7 +28,7 @@ export default class ContainerSample extends LightningElement {
 	}
 
 	handleListChanged(ev) {
-		this._sortedList = ev.detail;
-		console.log(JSON.stringify(ev.detail));
+		this.sortedList = ev.target.items;
+		console.log(JSON.stringify(ev.target.items));
 	}
 }

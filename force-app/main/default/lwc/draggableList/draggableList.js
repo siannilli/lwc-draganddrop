@@ -30,9 +30,8 @@ export default class DraggableList extends LightningElement {
 		var el = ev.target;
 		var idxSource = this.dragIndex;
 		var idxTarget = el.index;
-		console.log(' Index source: ' + idxSource + ' Index target: ' + idxTarget);
+		
 		this.swapArray(idxSource, idxTarget);
-
 		this.dragIndex = idxTarget;
 
 		ev.preventDefault();
@@ -49,13 +48,12 @@ export default class DraggableList extends LightningElement {
 		let el = ev.target; // current element
 		let idxSource = this.dragIndex;
 		let idxTarget = el.index;
-		console.log(' Index source: ' + idxSource + ' Index target: ' + idxTarget);
+	
 		this.swapArray(idxSource, idxTarget);
 		ev.dataTransfer.clearData('text/index');
 		this.dragIndex = -1;
 		el.parentElement.classList.remove('dragover');
-
-		console.log(this.items);
+		this.dispatchEvent(new CustomEvent('listchanged', { /* detail: this.items */ }));
 	}
 
 	startDrag(ev) {
@@ -66,7 +64,6 @@ export default class DraggableList extends LightningElement {
 
 	swapArray(idx1, idx2) {		
 		[this._items[idx1], this._items[idx2]] = [this._items[idx2], this._items[idx1]];
-		this.dispatchEvent(new CustomEvent('listchanged', { detail: this._items}));
 	}
 
 	dragEnter(ev) {

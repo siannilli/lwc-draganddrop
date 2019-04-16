@@ -1,0 +1,343 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGBUS (0xa) at pc=0x0000000106467623, pid=2918, tid=0x0000000000004003
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_121-b13) (build 1.8.0_121-b13)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.121-b13 mixed mode bsd-amd64 compressed oops)
+# Problematic frame:
+# 
+[error occurred during error reporting (printing problematic frame), id 0xa]
+
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fbfb6818000):  JavaThread "ApexIndexer RUNNING" [_thread_in_vm, id=16387, stack(0x000070000d405000,0x000070000d505000)]
+
+siginfo: si_signo: 10 (SIGBUS), si_code: 2 (BUS_ADRERR), si_addr: 0x00007fbfb35098d0
+
+Registers:
+RAX=0x00007fbfb35098d0, RBX=0x0000000000000003, RCX=0x00000000ffffffff, RDX=0x000070000d503d58
+RSP=0x000070000d503cd0, RBP=0x000070000d503cd0, RSI=0x0000000000001457, RDI=0x00000007c01cdf70
+R8 =0x0000000000000003, R9 =0x000070000d503d48, R10=0x00000001069ab700, R11=0x0000000112088dc0
+R12=0x000000012422dd80, R13=0x00007fbfb3411050, R14=0x00000000ffffffff, R15=0x00007fbfb3411050
+RIP=0x0000000106467623, EFLAGS=0x0000000000010246, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x000070000d503cd0)
+0x000070000d503cd0:   000070000d503d10 0000000106271311
+0x000070000d503ce0:   000070000d503d48 000000012422dd80
+0x000070000d503cf0:   000000012422dd80 00007fbfb3411050
+0x000070000d503d00:   000070000d503e40 0000000000001457
+0x000070000d503d10:   000070000d503da0 0000000106271ef8
+0x000070000d503d20:   0000000000000100 00000001066896d7
+0x000070000d503d30:   0000000000000000 00000003ffffffff
+0x000070000d503d40:   00007fbfb3710340 000000012422dd80
+0x000070000d503d50:   00007fbfb6818000 000000012422dd80
+0x000070000d503d60:   00007fbfb6818000 000000012422dd80
+0x000070000d503d70:   000000012422dd80 000000012422dd80
+0x000070000d503d80:   000000012422dd80 0000000000000100
+0x000070000d503d90:   00007fbfb6818001 0000000000001457
+0x000070000d503da0:   000070000d503eb0 0000000106272485
+0x000070000d503db0:   0000000100000100 00000001066896d7
+0x000070000d503dc0:   0000000000000000 0000000000000000
+0x000070000d503dd0:   0000010000000000 00000001066896d7
+0x000070000d503de0:   00007fbfb37031f0 000070000d503f58
+0x000070000d503df0:   ffffffff066c8bf4 00007fbfb3710340
+0x000070000d503e00:   00000003b37425a0 000070000d503f68
+0x000070000d503e10:   000000012422dd80 00007fbfb6818000
+0x000070000d503e20:   000000012422dd80 00007fbfb6818000
+0x000070000d503e30:   000000012422dd80 00007fbfb6818000
+0x000070000d503e40:   000000012422dd80 00007fbfb6818000
+0x000070000d503e50:   000000012422dd80 000000012422dd80
+0x000070000d503e60:   000000012422dd80 000000012422dd80
+0x000070000d503e70:   000000012422dd80 000000012422dd80
+0x000070000d503e80:   000000012422dd80 000070000d504028
+0x000070000d503e90:   000000012422dd80 0000000000000100
+0x000070000d503ea0:   000000012422dd80 0000000000000000
+0x000070000d503eb0:   000070000d503ff0 0000000106272c03
+0x000070000d503ec0:   00007fbfb6818000 0000000200000000 
+
+Instructions: (pc=0x0000000106467623)
+0x0000000106467603:   e5 48 8b 06 48 8b 00 48 8d 4f 68 48 89 f7 48 89
+0x0000000106467613:   ce 5d ff e0 90 55 48 89 e5 48 8b 87 90 00 00 00
+0x0000000106467623:   48 8b 00 5d c3 55 48 89 e5 31 c0 5d c3 55 48 89
+0x0000000106467633:   e5 48 81 c7 b0 00 00 00 48 8d 05 86 1c 54 00 83 
+
+Register to memory mapping:
+
+RAX=
+[error occurred during error reporting (printing register info), id 0xa]
+
+Stack: [0x000070000d405000,0x000070000d505000],  sp=0x000070000d503cd0,  free space=1019k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+[error occurred during error reporting (printing native stack), id 0xa]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  java.nio.file.FileSystems.getDefault()Ljava/nio/file/FileSystem;+0
+j  java.nio.file.Paths.get(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;+0
+j  apex.jorje.lsp.impl.index.ApexIndexer.runOneIteration()V+34
+j  com.google.common.util.concurrent.AbstractScheduledService$ServiceDelegate$Task.run()V+43
+j  com.google.common.util.concurrent.Callables$4.run()V+30
+j  java.util.concurrent.Executors$RunnableAdapter.call()Ljava/lang/Object;+4
+j  java.util.concurrent.FutureTask.runAndReset()Z+47
+j  java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Ljava/util/concurrent/ScheduledThreadPoolExecutor$ScheduledFutureTask;)Z+1
+j  java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run()V+37
+j  java.util.concurrent.ThreadPoolExecutor.runWorker(Ljava/util/concurrent/ThreadPoolExecutor$Worker;)V+95
+j  java.util.concurrent.ThreadPoolExecutor$Worker.run()V+5
+
+[error occurred during error reporting (printing Java stack), id 0xa]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+=>0x00007fbfb6818000 JavaThread "ApexIndexer RUNNING" [_thread_in_vm, id=16387, stack(0x000070000d405000,0x000070000d505000)]
+  0x00007fbfb3901000 JavaThread "DestroyJavaVM" [_thread_blocked, id=10499, stack(0x000070000c1cf000,0x000070000c2cf000)]
+  0x00007fbfb5136800 JavaThread "pool-1-thread-1" [_thread_in_native, id=2567, stack(0x000070000cff9000,0x000070000d0f9000)]
+  0x00007fbfb403b800 JavaThread "Service Thread" daemon [_thread_blocked, id=14595, stack(0x000070000cdf3000,0x000070000cef3000)]
+  0x00007fbfb4827000 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=14083, stack(0x000070000ccf0000,0x000070000cdf0000)]
+  0x00007fbfb5001800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=18179, stack(0x000070000cbed000,0x000070000cced000)]
+  0x00007fbfb4826800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=18691, stack(0x000070000caea000,0x000070000cbea000)]
+  0x00007fbfb401e800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=13315, stack(0x000070000c9e7000,0x000070000cae7000)]
+  0x00007fbfb3826800 JavaThread "Finalizer" daemon [_thread_blocked, id=11779, stack(0x000070000c8e4000,0x000070000c9e4000)]
+  0x00007fbfb3826000 JavaThread "Reference Handler" daemon [_thread_blocked, id=11523, stack(0x000070000c7e1000,0x000070000c8e1000)]
+
+Other Threads:
+  0x00007fbfb3823000 VMThread [stack: 0x000070000c6de000,0x000070000c7de000] [id=20483]
+  0x00007fbfb482c800 WatcherThread [stack: 0x000070000cef6000,0x000070000cff6000] [id=14851]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fbfb37031f0] MethodCompileQueue_lock - owner thread: 0x00007fbfb6818000
+
+Heap:
+ PSYoungGen      total 200192K, used 74977K [0x000000076ab00000, 0x0000000779d80000, 0x00000007c0000000)
+  eden space 164864K, 25% used [0x000000076ab00000,0x000000076d3fa5c0,0x0000000774c00000)
+  from space 35328K, 93% used [0x0000000777180000,0x00000007791be060,0x0000000779400000)
+  to   space 38400K, 0% used [0x0000000774c00000,0x0000000774c00000,0x0000000777180000)
+ ParOldGen       total 147968K, used 54445K [0x00000006c0000000, 0x00000006c9080000, 0x000000076ab00000)
+  object space 147968K, 36% used [0x00000006c0000000,0x00000006c352b4e0,0x00000006c9080000)
+
+[error occurred during error reporting (printing heap information), id 0xa]
+
+CodeCache: size=245760Kb used=14808Kb max_used=14997Kb free=230951Kb
+ bounds [0x0000000111a5b000, 0x000000011291b000, 0x0000000120a5b000]
+ total_blobs=5115 nmethods=4735 adapters=292
+ compilation: enabled
+
+
+[error occurred during error reporting (printing ring buffers), id 0xa]
+
+Dynamic libraries:
+
+[error occurred during error reporting (printing dynamic libraries), id 0xa]
+
+VM Arguments:
+jvm_args: -Ddebug.internal.errors=true -Ddebug.semantic.errors=false 
+java_command: apex.jorje.lsp.ApexLanguageServerLauncher
+java_class_path (initial): /Users/stefano.iannilli/.vscode/extensions/salesforce.salesforcedx-vscode-apex-45.9.0/out/apex-jorje-lsp.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/stefano.iannilli/Library/apache-maven-3.3.9/bin:/Users/stefano.iannilli/Library/apache-ant-1.10.1/bin:/Users/stefano.iannilli/bin
+SHELL=/bin/bash
+
+Signal Handlers:
+SIGSEGV: 
+[error occurred during error reporting (printing signal handlers), id 0xa]
+
+
+---------------  S Y S T E M  ---------------
+
+OS:Bsduname:Darwin 18.5.0 Darwin Kernel Version 18.5.0: Mon Mar 11 20:40:32 PDT 2019; root:xnu-4903.251.3~3/RELEASE_X86_64 x86_64
+rlimit: STACK 8192k, CORE 0k, NPROC 1418, NOFILE 10240, AS infinity
+load average:
+[error occurred during error reporting (printing OS information), id 0xa]
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 78 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, rtm, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+Memory: 4k page, physical 16777216k(1368736k free)
+
+/proc/meminfo:
+
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.121-b13) for bsd-amd64 JRE (1.8.0_121-b13), built on Dec 12 2016 20:39:32 by "java_re" with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
+
+
+[error occurred during error reporting (printing date and time), id 0xa]
+
+
+[error occurred during error reporting , id 0xa]
+
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGBUS (0xa) at pc=0x0000000106467623, pid=2918, tid=0x0000000000004003
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_121-b13) (build 1.8.0_121-b13)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.121-b13 mixed mode bsd-amd64 compressed oops)
+# Problematic frame:
+# 
+[error occurred during error reporting (printing problematic frame), id 0xa]
+
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fbfb6818000):  JavaThread "ApexIndexer RUNNING" [_thread_in_vm, id=16387, stack(0x000070000d405000,0x000070000d505000)]
+
+siginfo: si_signo: 10 (SIGBUS), si_code: 2 (BUS_ADRERR), si_addr: 0x00007fbfb35098d0
+
+Registers:
+RAX=0x00007fbfb35098d0, RBX=0x0000000000000003, RCX=0x00000000ffffffff, RDX=0x000070000d503d58
+RSP=0x000070000d503cd0, RBP=0x000070000d503cd0, RSI=0x0000000000001457, RDI=0x00000007c01cdf70
+R8 =0x0000000000000003, R9 =0x000070000d503d48, R10=0x00000001069ab700, R11=0x0000000112088dc0
+R12=0x000000012422dd80, R13=0x00007fbfb3411050, R14=0x00000000ffffffff, R15=0x00007fbfb3411050
+RIP=0x0000000106467623, EFLAGS=0x0000000000010246, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x000070000d503cd0)
+0x000070000d503cd0:   000070000d503d10 0000000106271311
+0x000070000d503ce0:   000070000d503d48 000000012422dd80
+0x000070000d503cf0:   000000012422dd80 00007fbfb3411050
+0x000070000d503d00:   000070000d503e40 0000000000001457
+0x000070000d503d10:   000070000d503da0 0000000106271ef8
+0x000070000d503d20:   0000000000000100 00000001066896d7
+0x000070000d503d30:   0000000000000000 00000003ffffffff
+0x000070000d503d40:   00007fbfb3710340 000000012422dd80
+0x000070000d503d50:   00007fbfb6818000 000000012422dd80
+0x000070000d503d60:   00007fbfb6818000 000000012422dd80
+0x000070000d503d70:   000000012422dd80 000000012422dd80
+0x000070000d503d80:   000000012422dd80 0000000000000100
+0x000070000d503d90:   00007fbfb6818001 0000000000001457
+0x000070000d503da0:   000070000d503eb0 0000000106272485
+0x000070000d503db0:   0000000100000100 00000001066896d7
+0x000070000d503dc0:   0000000000000000 0000000000000000
+0x000070000d503dd0:   0000010000000000 00000001066896d7
+0x000070000d503de0:   00007fbfb37031f0 000070000d503f58
+0x000070000d503df0:   ffffffff066c8bf4 00007fbfb3710340
+0x000070000d503e00:   00000003b37425a0 000070000d503f68
+0x000070000d503e10:   000000012422dd80 00007fbfb6818000
+0x000070000d503e20:   000000012422dd80 00007fbfb6818000
+0x000070000d503e30:   000000012422dd80 00007fbfb6818000
+0x000070000d503e40:   000000012422dd80 00007fbfb6818000
+0x000070000d503e50:   000000012422dd80 000000012422dd80
+0x000070000d503e60:   000000012422dd80 000000012422dd80
+0x000070000d503e70:   000000012422dd80 000000012422dd80
+0x000070000d503e80:   000000012422dd80 000070000d504028
+0x000070000d503e90:   000000012422dd80 0000000000000100
+0x000070000d503ea0:   000000012422dd80 0000000000000000
+0x000070000d503eb0:   000070000d503ff0 0000000106272c03
+0x000070000d503ec0:   00007fbfb6818000 0000000200000000 
+
+Instructions: (pc=0x0000000106467623)
+0x0000000106467603:   e5 48 8b 06 48 8b 00 48 8d 4f 68 48 89 f7 48 89
+0x0000000106467613:   ce 5d ff e0 90 55 48 89 e5 48 8b 87 90 00 00 00
+0x0000000106467623:   48 8b 00 5d c3 55 48 89 e5 31 c0 5d c3 55 48 89
+0x0000000106467633:   e5 48 81 c7 b0 00 00 00 48 8d 05 86 1c 54 00 83 
+
+Register to memory mapping:
+
+RAX=
+[error occurred during error reporting (printing register info), id 0xa]
+
+Stack: [0x000070000d405000,0x000070000d505000],  sp=0x000070000d503cd0,  free space=1019k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+[error occurred during error reporting (printing native stack), id 0xa]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  java.nio.file.FileSystems.getDefault()Ljava/nio/file/FileSystem;+0
+j  java.nio.file.Paths.get(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;+0
+j  apex.jorje.lsp.impl.index.ApexIndexer.runOneIteration()V+34
+j  com.google.common.util.concurrent.AbstractScheduledService$ServiceDelegate$Task.run()V+43
+j  com.google.common.util.concurrent.Callables$4.run()V+30
+j  java.util.concurrent.Executors$RunnableAdapter.call()Ljava/lang/Object;+4
+j  java.util.concurrent.FutureTask.runAndReset()Z+47
+j  java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Ljava/util/concurrent/ScheduledThreadPoolExecutor$ScheduledFutureTask;)Z+1
+j  java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run()V+37
+j  java.util.concurrent.ThreadPoolExecutor.runWorker(Ljava/util/concurrent/ThreadPoolExecutor$Worker;)V+95
+j  java.util.concurrent.ThreadPoolExecutor$Worker.run()V+5
+
+[error occurred during error reporting (printing Java stack), id 0xa]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+=>0x00007fbfb6818000 JavaThread "ApexIndexer RUNNING" [_thread_in_vm, id=16387, stack(0x000070000d405000,0x000070000d505000)]
+  0x00007fbfb3901000 JavaThread "DestroyJavaVM" [_thread_blocked, id=10499, stack(0x000070000c1cf000,0x000070000c2cf000)]
+  0x00007fbfb5136800 JavaThread "pool-1-thread-1" [_thread_in_native, id=2567, stack(0x000070000cff9000,0x000070000d0f9000)]
+  0x00007fbfb403b800 JavaThread "Service Thread" daemon [_thread_blocked, id=14595, stack(0x000070000cdf3000,0x000070000cef3000)]
+  0x00007fbfb4827000 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=14083, stack(0x000070000ccf0000,0x000070000cdf0000)]
+  0x00007fbfb5001800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=18179, stack(0x000070000cbed000,0x000070000cced000)]
+  0x00007fbfb4826800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=18691, stack(0x000070000caea000,0x000070000cbea000)]
+  0x00007fbfb401e800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=13315, stack(0x000070000c9e7000,0x000070000cae7000)]
+  0x00007fbfb3826800 JavaThread "Finalizer" daemon [_thread_blocked, id=11779, stack(0x000070000c8e4000,0x000070000c9e4000)]
+  0x00007fbfb3826000 JavaThread "Reference Handler" daemon [_thread_blocked, id=11523, stack(0x000070000c7e1000,0x000070000c8e1000)]
+
+Other Threads:
+  0x00007fbfb3823000 VMThread [stack: 0x000070000c6de000,0x000070000c7de000] [id=20483]
+  0x00007fbfb482c800 WatcherThread [stack: 0x000070000cef6000,0x000070000cff6000] [id=14851]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fbfb37031f0] MethodCompileQueue_lock - owner thread: 0x00007fbfb6818000
+
+Heap:
+ PSYoungGen      total 200192K, used 74977K [0x000000076ab00000, 0x0000000779d80000, 0x00000007c0000000)
+  eden space 164864K, 25% used [0x000000076ab00000,0x000000076d3fa5c0,0x0000000774c00000)
+  from space 35328K, 93% used [0x0000000777180000,0x00000007791be060,0x0000000779400000)
+  to   space 38400K, 0% used [0x0000000774c00000,0x0000000774c00000,0x0000000777180000)
+ ParOldGen       total 147968K, used 54445K [0x00000006c0000000, 0x00000006c9080000, 0x000000076ab00000)
+  object space 147968K, 36% used [0x00000006c0000000,0x00000006c352b4e0,0x00000006c9080000)
+
+[error occurred during error reporting (printing heap information), id 0xa]
+
+CodeCache: size=245760Kb used=14808Kb max_used=14997Kb free=230951Kb
+ bounds [0x0000000111a5b000, 0x000000011291b000, 0x0000000120a5b000]
+ total_blobs=5115 nmethods=4735 adapters=292
+ compilation: enabled
+
+
+[error occurred during error reporting (printing ring buffers), id 0xa]
+
+Dynamic libraries:
+
+[error occurred during error reporting (printing dynamic libraries), id 0xa]
+
+VM Arguments:
+jvm_args: -Ddebug.internal.errors=true -Ddebug.semantic.errors=false 
+java_command: apex.jorje.lsp.ApexLanguageServerLauncher
+java_class_path (initial): /Users/stefano.iannilli/.vscode/extensions/salesforce.salesforcedx-vscode-apex-45.9.0/out/apex-jorje-lsp.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/stefano.iannilli/Library/apache-maven-3.3.9/bin:/Users/stefano.iannilli/Library/apache-ant-1.10.1/bin:/Users/stefano.iannilli/bin
+SHELL=/bin/bash
+
+Signal Handlers:
+SIGSEGV: 
+[error occurred during error reporting (printing signal handlers), id 0xa]
+
+
+---------------  S Y S T E M  ---------------
+
+OS:Bsduname:Darwin 18.5.0 Darwin Kernel Version 18.5.0: Mon Mar 11 20:40:32 PDT 2019; root:xnu-4903.251.3~3/RELEASE_X86_64 x86_64
+rlimit: STACK 8192k, CORE 0k, NPROC 1418, NOFILE 10240, AS infinity
+load average:

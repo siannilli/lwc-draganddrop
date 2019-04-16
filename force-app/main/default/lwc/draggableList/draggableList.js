@@ -79,4 +79,39 @@ export default class DraggableList extends LightningElement {
 			el.classList.remove('dragover');
 		}
 	}
+
+	touchEnd(ev) {
+		if (this.dragIndex === -1) {
+			this._dispatchEvent(ev, 'drop', ev.target);
+		}
+		console.log('Touch ended');
+	}
+
+	touchStart(ev) {
+		if (this.dragIndex === -1) {
+			this._dispatchEvent(ev, 'dragstart', ev.target);
+		}
+		console.log('Touch started');
+	}
+
+	touchMove (ev) {
+		console.log('Touch moving');
+	}
+
+	touchCancel(ev) {
+		console.log('Touch canceled');
+	}
+
+	_dispatchEvent(e, type, target) {
+		if (e && target) {
+			let evt = document.createEvent('Event');
+			evt.initEvent(type, true, true);
+			evt.button = 0;
+			evt.which = evt.buttons = 1;
+			target.parentElement.dispatchEvent(evt);
+			return evt.defaultPrevented;
+		}
+		return false;
+	}
+
 }

@@ -1,4 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
+import DragDropTouch from '@salesforce/resourceUrl/DragDropTouch';
+import { loadScript } from 'lightning/platformResourceLoader';
 
 export default class DraggableList extends LightningElement {
 
@@ -24,6 +26,14 @@ export default class DraggableList extends LightningElement {
 		return this._items;
 	}
 
+	renderedCallback() {
+		Promise.all([loadScript(this, DragDropTouch)])
+			.then(() => {
+				console.log('DnDTouch Laoded');
+				window.DDT.init(this.template.querySelectorAll('.c-draggable'));
+			})
+			.catch((error) => console.error(error));
+	} 
 
 	allowDrop(ev) {
 		// on dragover I swap the elements

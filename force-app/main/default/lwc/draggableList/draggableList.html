@@ -4,7 +4,7 @@
 	</template>
 
 	<template for:each={items} for:item="item" for:index="idx">
-		<div key={item.name} draggable="true" 
+		<div class="c-draggable" key={item.name} draggable="true" 
 			ondragstart={startDrag} 
 			ondragover={allowDrop} 
 			ondrop={dropItem}

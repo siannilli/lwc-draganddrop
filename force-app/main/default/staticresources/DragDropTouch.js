@@ -137,6 +137,9 @@ var DragDropTouch;
             if (DragDropTouch._instance) {
                 throw 'DragDropTouch instance already created.';
             }
+        }
+
+        DragDropTouch.prototype.init = function(ael) {
             // detect passive event support
             // https://github.com/Modernizr/Modernizr/issues/1894
             var supportsPassive = false;
@@ -146,15 +149,20 @@ var DragDropTouch;
                     return true;
                 }
             });
+            
             // listen to touch events
-            if ('ontouchstart' in document) {
-                var d = document, ts = this._touchstart.bind(this), tm = this._touchmove.bind(this), te = this._touchend.bind(this), opt = supportsPassive ? { passive: false, capture: false } : false;
-                d.addEventListener('touchstart', ts, opt);
-                d.addEventListener('touchmove', tm, opt);
-                d.addEventListener('touchend', te);
-                d.addEventListener('touchcancel', te);
-            }
-        }
+            for (var i = 0; i < ael.length; i++) {
+                var el = ael[i];
+
+                if ('ontouchstart' in el) {
+                    var d = el, ts = this._touchstart.bind(this), tm = this._touchmove.bind(this), te = this._touchend.bind(this), opt = supportsPassive ? { passive: false, capture: false } : false;
+                    el.addEventListener('touchstart', ts, opt);
+                    el.addEventListener('touchmove', tm, opt);
+                    el.addEventListener('touchend', te);
+                    el.addEventListener('touchcancel', te);
+                }
+            };
+        };
         /**
          * Gets a reference to the @see:DragDropTouch singleton.
          */
@@ -444,4 +452,5 @@ var DragDropTouch;
     DragDropTouch._kbdProps = 'altKey,ctrlKey,metaKey,shiftKey'.split(',');
     DragDropTouch._ptProps = 'pageX,pageY,clientX,clientY,screenX,screenY'.split(',');
     DragDropTouch_1.DragDropTouch = DragDropTouch;
+    window.DDT = DragDropTouch._instance;
 })(DragDropTouch || (DragDropTouch = {}));

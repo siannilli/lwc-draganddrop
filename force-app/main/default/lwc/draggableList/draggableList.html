@@ -8,11 +8,13 @@
 			ondragstart={startDrag} 
 			ondragover={allowDrop} 
 			ondrop={dropItem}
-			ondragleave={dragLeave}>
-			<!--ontouchstart={touchStart} 
-			ontouchmove={touchOver} 
+			ondragleave={dragLeave}
+			ondragend={dragEnd}
+			ontouchstart={touchStart} 			
+			ontouchover={touchMove} 
+			ontouchmove={touchMove}
 			ontouchend={touchEnd}
-			ontouchcancel={touchCancel} -->
+			ontouchcancel={touchCancel}>
 			<c-draggable-item key={item.name} item={item} index={idx}></c-draggable-item>
 		</div>
 	</template>

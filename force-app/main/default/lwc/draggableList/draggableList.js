@@ -1,6 +1,4 @@
 import { LightningElement, api, track } from 'lwc';
-import DragDropTouch from '@salesforce/resourceUrl/DragDropTouch';
-import { loadScript } from 'lightning/platformResourceLoader';
 
 export default class DraggableList extends LightningElement {
 
@@ -26,46 +24,39 @@ export default class DraggableList extends LightningElement {
 		return this._items;
 	}
 
-	renderedCallback() {
-		Promise.all([loadScript(this, DragDropTouch)])
-			.then(() => {
-				console.log('DnDTouch Laoded');
-				window.DDT.init(this.template.querySelectorAll('.c-draggable'));
-			})
-			.catch((error) => console.error(error));
-	} 
-
 	allowDrop(ev) {
 		// on dragover I swap the elements
-		var el = ev.target;
-		var idxSource = this.dragIndex;
-		var idxTarget = el.index;
-		
-		this.swapArray(idxSource, idxTarget);
-		this.dragIndex = idxTarget;
+		this.swapElement(ev.target);
 
 		ev.preventDefault();
 		ev.stopPropagation();
 		ev.dataTransfer.dropEffect = "move";
-
-		el.parentElement.classList.add('dragover');
+		ev.target.parentElement.classList.add('dragover');
 	}
 
 	dropItem(ev) {
 		ev.preventDefault();
 		ev.stopPropagation();
 
-		let el = ev.target; // current element
-		let idxSource = this.dragIndex;
-		let idxTarget = el.index;
-	
-		this.swapArray(idxSource, idxTarget);
+		this.swapElement(ev.target);
+
 		ev.dataTransfer.clearData('text/index');
 		this.dragIndex = -1;
-		el.parentElement.classList.remove('dragover');
-		this.dispatchEvent(new CustomEvent('listchanged', { /* detail: this.items */ }));
+		ev.target.parentElement.classList.remove('dragover');
+
 	}
 
+	swapElement(el) {		
+		var idxSource = this.dragIndex;
+		var idxTarget = el.index;
+
+		this.swapArray(idxSource, idxTarget);
+		this.toggleDraggableClass();
+
+		this.dragIndex = idxTarget;
+		
+		this.dispatchEvent(new CustomEvent('listchanged', { /* detail: this.items */ }));
+	}
 	startDrag(ev) {
 		this.dragIndex = ev.target.querySelector('c-draggable-item').index
 		ev.dataTransfer.setData('text/index', this.dragIndex);
@@ -76,13 +67,6 @@ export default class DraggableList extends LightningElement {
 		[this._items[idx1], this._items[idx2]] = [this._items[idx2], this._items[idx1]];
 	}
 
-	dragEnter(ev) {
-		var el = ev.target.parentElement;
-		if (el) { 
-			el.classList.add('dragover'); 
-		}
-	}
-
 	dragLeave(ev) {
 		var el = ev.target.parentElement;
 		if (el) {
@@ -90,38 +74,65 @@ export default class DraggableList extends LightningElement {
 		}
 	}
 
+	dragEnd(ev) {
+		this.dragIndex = -1;
+		this.toggleDraggableClass();
+	}
+
 	touchEnd(ev) {
-		if (this.dragIndex === -1) {
-			this._dispatchEvent(ev, 'drop', ev.target);
-		}
-		console.log('Touch ended');
+		console.log('Touch ended. Index: ' + ev.target.index);
+		this.dragIndex = -1;	
+		this.toggleDraggableClass();
+		ev.preventDefault();
+		ev.stopPropagation();
 	}
 
-	touchStart(ev) {
-		if (this.dragIndex === -1) {
-			this._dispatchEvent(ev, 'dragstart', ev.target);
-		}
-		console.log('Touch started');
+	touchStart(ev) {	
+		console.log('Touch started. Index: ' + ev.target.index);
+		this.dragIndex = ev.target.index;
+		this.toggleDraggableClass();
+
+		ev.preventDefault();
+		ev.stopPropagation();
 	}
 
-	touchMove (ev) {
-		console.log('Touch moving');
+	touchMove (ev) {		
+		var el = this.template.elementFromPoint(ev.touches[0].clientX, ev.touches[0].clientY);
+		if (el === ev.target){
+			console.log('Touch over the same element' );
+			return;
+		}
+		if (el.nodeName !== 'C-DRAGGABLE-ITEM') {
+			console.log('Touch over another element: ' + el.nodeName);
+			return;
+		}
+
+		console.log('Drag index: ' + this.dragIndex);
+		console.log('Touch moving. Index: ' + el.index);		
+
+		this.swapElement(el);
+
+		ev.preventDefault();
+		ev.stopPropagation();
 	}
 
 	touchCancel(ev) {
+		this.dragIndex = -1;
+		ev.preventDefault();
+		ev.stopPropagation();
+
 		console.log('Touch canceled');
 	}
 
-	_dispatchEvent(e, type, target) {
-		if (e && target) {
-			let evt = document.createEvent('Event');
-			evt.initEvent(type, true, true);
-			evt.button = 0;
-			evt.which = evt.buttons = 1;
-			target.parentElement.dispatchEvent(evt);
-			return evt.defaultPrevented;
-		}
-		return false;
+	toggleDraggableClass() {
+		var elms = this.template.querySelectorAll('c-draggable-item');
+		elms.forEach(el => {
+			if (el.index === this.dragIndex) {
+				el.parentElement.classList.add('dragover');
+			} else {
+				el.parentElement.classList.remove('dragover');
+			}
+		});
 	}
 
 }
